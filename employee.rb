@@ -4,7 +4,7 @@ class Employee
   attr_reader :employee_type, :hp
 
   def initialize(state: state)
-    @employee_type = EmployeeType.new(state)
+    @employee_type = EmployeeType.getType(state)
     @hp            = employee_type.init_hp
   end
 
@@ -26,15 +26,15 @@ class Employee
 
   def update_employee_type!
     @employee_type = if hp > 100
-                       EmployeeType.new(:super)
+                       EmployeeType.getType(:super)
                      elsif hp.between?(61, 100)
-                       EmployeeType.new(:normal)
+                       EmployeeType.getType(:normal)
                      elsif hp.between?(31, 60)
-                       EmployeeType.new(:warning)
+                       EmployeeType.getType(:warning)
                      elsif hp.between?(1, 30)
-                       EmployeeType.new(:dying)
+                       EmployeeType.getType(:dying)
                      elsif hp <= 0
-                       EmployeeType.new(:game_over)
+                       EmployeeType.getType(:game_over)
                      end
   end
 end

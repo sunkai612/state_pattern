@@ -1,29 +1,5 @@
 class EmployeeType
-  attr_reader :type
-
-  def initialize(state)
-    @type = set_type(state)
-  end
-
-  def tickets_attack(hp, atk)
-    type.tickets_attack(hp, atk)
-  end
-
-  def take_break(hp)
-    type.take_break(hp)
-  end
-
-  def display_name
-    type.class.name.split('::').last.downcase.to_sym
-  end
-
-  def init_hp
-    type.init_hp
-  end
-
-  private
-
-  def set_type(state)
+  def self.getType(state)
     if state == :super
       Super.new
     elsif state == :normal
@@ -49,6 +25,10 @@ class EmployeeType
     def init_hp
       120
     end
+
+    def display_name
+      self.class.name.split('::').last.downcase.to_sym
+    end
   end
 
   class Normal
@@ -62,6 +42,10 @@ class EmployeeType
 
     def init_hp
       100
+    end
+
+    def display_name
+      self.class.name.split('::').last.downcase.to_sym
     end
   end
 
@@ -77,6 +61,10 @@ class EmployeeType
     def init_hp
       60
     end
+
+    def display_name
+      self.class.name.split('::').last.downcase.to_sym
+    end
   end
 
   class Dying
@@ -91,6 +79,10 @@ class EmployeeType
     def init_hp
       30
     end
+
+    def display_name
+      self.class.name.split('::').last.downcase.to_sym
+    end
   end
 
   class Game_Over
@@ -104,6 +96,10 @@ class EmployeeType
 
     def init_hp
       0
+    end
+
+    def display_name
+      self.class.name.split('::').last.downcase.to_sym
     end
   end
 end
